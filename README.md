@@ -20,7 +20,8 @@ A project to learn modern full-stack development made by Josh.
 - Variants with class-variance-authority
 
 ## Things I forgot in the video
-
+- [Adding metadata to some pages](https://github.com/joschan21/nextjs-realtime-chat/blob/master/src/app/(dashboard)/dashboard/chat/%5BchatId%5D/page.tsx)
+- [Adding a favicon](https://github.com/joschan21/nextjs-realtime-chat/blob/master/public/favicon.ico)
 
 ## Acknowledgements
 
