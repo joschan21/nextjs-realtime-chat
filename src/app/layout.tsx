@@ -1,4 +1,4 @@
-import Providers from '@/components/Providers'
+import Providers from "@/Components/Providers"
 import './globals.css'
 
 // Done after the video and optional: add page metadata
