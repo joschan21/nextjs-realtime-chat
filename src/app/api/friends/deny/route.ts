@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
     return new Response('OK')
   } catch (error) {
-    console.log(error)
+    console.error(error)
 
     if (error instanceof z.ZodError) {
       return new Response('Invalid request payload', { status: 422 })
