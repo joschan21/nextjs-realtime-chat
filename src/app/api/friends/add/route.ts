@@ -17,13 +17,13 @@ export async function POST(req: Request) {
       'get',
       `user:email:${emailToAdd}`
     )) as string
-
+    //console.log("Fetched from redis")
     if (!idToAdd) {
       return new Response('This person does not exist.', { status: 400 })
     }
 
     const session = await getServerSession(authOptions)
-
+    //console.log("got server session")
     if (!session) {
       return new Response('Unauthorized', { status: 401 })
     }
@@ -57,18 +57,24 @@ export async function POST(req: Request) {
     }
 
     // valid request, send friend request
-
-    await pusherServer.trigger(
-      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
-      'incoming_friend_requests',
-      {
-        senderId: session.user.id,
-        senderEmail: session.user.email,
-      }
-    )
+    try{
+      await pusherServer.trigger(
+        toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
+        'incoming_friend_requests',
+        {
+          senderId: session.user.id,
+          senderEmail: session.user.email,
+        }
+      )
+    }
+    catch(e){
+      console.log(e)
+    }
+    
+    //console.log("Done push server function")
 
     await db.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id)
-
+    //console.log("Done db function")
     return new Response('OK')
   } catch (error) {
     if (error instanceof z.ZodError) {

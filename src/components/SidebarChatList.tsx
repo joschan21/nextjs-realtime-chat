@@ -28,7 +28,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`))
 
     const newFriendHandler = (newFriend: User) => {
-      console.log("received new user", newFriend)
+      //console.log("received new user", newFriend)
       setActiveChats((prev) => [...prev, newFriend])
     }
 
